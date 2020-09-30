@@ -36,10 +36,24 @@ int dequeue(struct Queue * q){
 }
 int main(){
     struct Queue q;
-    q.size = 2;
+    q.size = 4;
     q.front = q.rear = -1;
     q.arr = (int *)malloc(q.size * sizeof(int *));
     enqueue(&q, 10);
     enqueue(&q, 20);
-    printf("%d", dequeue(&q));
+    enqueue(&q, 30);
+    enqueue(&q, 40);
+    printf("%d\n", dequeue(&q));
+    printf("%d\n", dequeue(&q));
+    printf("%d\n", dequeue(&q));
+    printf("%d\n", dequeue(&q));
+    enqueue(&q, 50);
+    // if(isFull(&q))
+    //     printf("\nQueue is full");
+    // else
+    //     printf("\nQueue is not full");
+    // if(isEmpty(&q))
+    //     printf("\nQueue is Empty");
+    // else
+    //     printf("\nQueue is not Empty");
 }

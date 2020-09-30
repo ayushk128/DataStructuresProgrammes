@@ -1,30 +1,30 @@
 #include<stdio.h>
 #include<stdlib.h>
-struct Queue{
+struct circularQueue{
     int size;
     int front;
     int rear;
     int *arr;
 };
-int isFull(struct Queue *q){
+int isFull(struct circularQueue *q){
     if((q->rear + 1) % q->size == q->front)
         return 1;
     else return 0;
 }
-int isEmpty(struct Queue *q){
+int isEmpty(struct circularQueue *q){
     if(q->front == q->rear)
         return 1;
     else return 0;
 }
-void enqueue(struct Queue *q, int data){
+void enqueue(struct circularQueue *q, int data){
     if(isFull(q))
-        printf("The queue is full");
+        printf("The queue is full\n");
     else{
         q->rear = (q->rear + 1) % q->size;
         q->arr[q->rear] = data;
     }
 }
-int dequeue(struct Queue * q){
+int dequeue(struct circularQueue * q){
     int a = -1;
     if(isEmpty(q))
         printf("Queue is empty");
@@ -35,16 +35,26 @@ int dequeue(struct Queue * q){
     return a;
 }
 int main(){
-    struct Queue q;
-    q.size = 2;
-    q.front = q.rear = -1;
+    struct circularQueue q;
+    q.size = 4;
+    q.front = q.rear = 0;   //this is aslo changed as compared to linear queue.
     q.arr = (int *)malloc(q.size * sizeof(int *));
+
     enqueue(&q, 10);
     enqueue(&q, 20);
     enqueue(&q, 30);
-    enqueue(&q, 40);
-    // enqueue(&q, 30);
     // printf("%d\n", dequeue(&q));
-    printf("%d\n", isFull(&q));
-    printf("%d\n", isEmpty(&q));
+    // printf("%d\n", dequeue(&q));
+    // printf("%d\n", dequeue(&q));
+    // printf("%d\n", dequeue(&q));
+    enqueue(&q, 50);
+    // dequeue(&q);
+    if(isFull(&q))
+        printf("\nQueue is full");
+    else
+        printf("\nQueue is not full");
+    if(isEmpty(&q))
+        printf("\nQueue is Empty");
+    else
+        printf("\nQueue is not Empty");
 }
